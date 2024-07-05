@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>Darknes</title>
+</head>
+
+<body>
+    <div class="container">
+        <p id="info" class="info"></p>
+        <h1>Dark Mode</h1>
+        <nav>
+            <a id="home" href="#" onclick="reRender()">Home</a>
+            <a id="mode" onclick="darkmode()">Mode Gelap</a>
+        </nav>
+    </div>
+    <!-- script -->
+    <script>
+        let body = document.body;
+        let info = document.getElementById('info');
+        let mode = document.getElementById('mode');
+        let home = document.getElementById('home');
+
+        const darkLimit = 5;
+        let darkCounter = 0;
+
+        function darkmode() {
+            if (darkCounter >= darkLimit) {
+                info.textContent = 'Jatah fitur darkmode anda sudah habis';
+                mode.style.display = 'none';
+                home.textContent = 'Restart'; // Change "Home" to "Restart"
+                home.style.backgroundColor = '#d9534f'; // Change button color to red
+                home.style.color = '#fff'; // Change text color to white
+                home.style.border = 'none'; // Remove border
+                return;
+            }
+
+            let darkRemainingLeft = darkLimit - darkCounter;
+            info.textContent = `Darkmode dipakai ${darkCounter}x, tersisa ${darkRemainingLeft}`;
+
+            darkCounter += 1;
+
+            console.log(`Dark mode diklik sebanyak: `, darkCounter);
+            console.log(`Kesempatan tersisa: `, darkRemainingLeft);
+            body.classList.toggle('dark');
+        }
+
+        function reRender() {
+            location.reload();
+        }
+    </script>
+</body>
+
+</html>
